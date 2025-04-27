@@ -1,0 +1,15 @@
+.custom-grid-priority{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+}
+.custom-grid-priority p{
+    font-family: var(--font-family);
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 0.3rem;
+}

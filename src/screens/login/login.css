@@ -1,0 +1,206 @@
+.login{
+  
+}
+.login-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+    height: 100vh;
+    padding: 2rem;
+
+}
+.login-words-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.login-logo{
+    width: 45%;
+    height: 50px;
+    margin-bottom: 2rem;
+}
+.login-logo img{
+    width: 180px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.login-words{
+    width: 45%;
+
+}
+.login-words h3{
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-size: 25px;
+    font-weight: 700;
+    margin-left: 0rem;
+}
+.login-words p{
+    font-family: var(--font-family);
+    color: var(--text-color2);
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 0rem;
+    margin: 1rem 0 2rem;
+}
+.form-group-button{
+    width: 100%;
+    height: 50px;
+    background-color: var(--background-color);
+    border-radius: 0.35rem;
+    margin-top: 1rem;
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: 0;
+   
+}
+.form-group-button p{
+    font-family: var(--font-family);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+    
+}
+.login-Image{
+    width: 100%;
+    height: 100%;
+
+}
+.login-Image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 1rem;
+}
+.input-container{
+    padding: 0px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; 
+    box-sizing: border-box; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.input-container input {
+    margin-top: 0;
+    border: 0;
+}
+.input-eye{
+    margin: 0 0.5rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .login-words{
+        width: 75%;
+    
+    }
+    .login-logo{
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .login{
+  
+    }
+    .login-container{
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 2rem;
+        justify-content: start;
+        align-items: flex-start;
+        height: fit-content;
+    
+    }
+    .login-words-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+        width: 100%;
+    
+    }
+    .login-words{
+        width: 100%;
+    
+    }
+    .login-logo{
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    .login-logo img{
+        width: 140px;
+        height: 40px;
+        object-fit: cover;
+    }
+    .login-words h3{
+        font-size: 23px;
+        font-weight: 700;
+        margin-left: 0rem;
+        margin-bottom: 0;
+    }
+    .login-words p{
+        font-family: var(--font-family);
+        color: var(--text-color2);
+        font-size: 14px;
+        font-weight: 500;
+        margin-left: 0rem;
+        margin: 0.5rem 0 2rem;
+    }
+    .form-group-button{
+        width: 100%;
+        height: 50px;
+        background-color: var(--background-color);
+        border-radius: 0.35rem;
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-group-button p{
+        font-family: var(--font-family);
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0rem;
+        text-align: center;
+    }
+    .login-Image{
+        width: 100%;
+        height: 250px;
+    
+    }
+    .login-Image img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover; 
+        border-radius: 1rem;
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    .login-container{
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 2rem;
+        justify-content: start;
+        align-items: flex-start;
+    
+    }
+    .login-Image{
+        width: 100%;
+        height: 200px;
+    
+    }
+}

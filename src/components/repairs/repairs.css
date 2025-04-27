@@ -1,0 +1,97 @@
+.repair-selector {
+    margin-bottom: 20px;
+  }
+  .part-selector{
+margin-bottom: 0;
+  }
+  
+  .repair-selector label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  
+  .repair-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .repair-box {
+    padding: 6px 12px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+  }
+  
+  .repair-box:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .repair-box.selected {
+    background-color: var(--background-color);
+    color: white;
+    border-color: var(--background-color);
+  }
+  
+  .custom-repair {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .input-field {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .btn-add {
+    padding: 3px 12px !important;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .btn-add:hover {
+    background-color: #218838;
+  }
+
+  .custom-parts-list{
+    margin: 1rem 0;
+  }
+
+  .custom-parts-list h5{
+    font-family: var(--font-family);
+    color: var(--text-color2);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .custom-parts-list li{
+    margin-bottom: 0.8rem;
+    font-family: var(--font-family);
+    color: var(--text-color2);
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .custom-parts-list li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .custom-parts-list button{
+    margin-left: 0.6rem;
+    background-color: #218838;
+    color: white;
+    border: 0;
+    width: 25px;
+    height: 25px;
+  }
+  

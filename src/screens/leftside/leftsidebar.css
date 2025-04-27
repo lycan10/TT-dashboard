@@ -1,0 +1,72 @@
+.leftSideBar{
+}
+.leftSideBar-container{
+    padding: 1rem;
+}
+/* .leftSideBar-logo-container{
+    display: flex;
+    justify-content: start;
+    align-self: center;
+    margin-bottom: 1rem;
+} */
+.leftSideBar-logo-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden;     /* Hides overflow if needed */
+  }
+.leftSideBar-logo{
+    width: 25px;
+    height: 25px;
+    transition: all 0.5s linear;
+}
+.leftSideBar-logo img{
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s linear;
+}
+/* .leftSideBar-title{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+.leftSideBar-title h1{
+    font-family: var(--font-family);
+    color: var(--text-color2);
+    font-size: 16px;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    max-width: 100%;
+} */
+.leftSideBar-title {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    flex-shrink: 1;
+    overflow: hidden;
+    transition: all 0.5s linear;
+  }
+  
+  .leftSideBar-title h1 {
+    font-family: var(--font-family);
+    color: var(--text-color2);
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    transition: all 0.5s linear;
+  }
+  
+.leftSideBar-search{
+
+}
+.leftSideBar.collapsed .leftSideBar-title {
+    width: 100%;
+  }
+  
+  .leftSideBar.collapsed {
+    width: 60px;
+  }
+  

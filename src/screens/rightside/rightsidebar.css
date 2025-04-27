@@ -1,0 +1,849 @@
+.rightsidebar {
+  overflow-y: hidden;
+  /* Ensure no horizontal overflow on the main container */
+  overflow-x: hidden;
+}
+
+.rightsidebar-container {
+  overflow-y: hidden;
+   /* Ensure no horizontal overflow on the container */
+  overflow-x: hidden;
+}
+
+.rightsidebar-bottom {
+  background-color: white;
+  padding: 1rem 1rem 0em;
+  border-radius: 0.5rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  height: calc(100vh - 6.5rem);
+  overflow-y: scroll;
+  /* Keep overflow-x hidden here to prevent the whole section from scrolling horizontally */
+  overflow-x: hidden;
+}
+
+.rightsidebar-navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* Add some wrapping behavior for smaller screens */
+  flex-wrap: wrap;
+}
+
+.rightsidebar-navbar h3 {
+  font-family: var(--font-family) !important;
+  font-size: 27px !important;
+  color: var(--text-color1) !important;
+  font-weight: 700;
+  /* Adjust margin for smaller screens */
+  margin-bottom: 0.5rem;
+}
+
+.rightsidebar-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  /* Adjust padding for smaller screens */
+  padding: 0.5rem 0.8rem;
+}
+
+.rightsidebar-button p {
+  margin-left: 0.3rem;
+  font-family: var(--font-family);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.rightsidebar-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 0 1rem;
+  /* Allow wrapping for filter items */
+  flex-wrap: wrap;
+}
+
+.rightsidebar-filter-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* Add margin to separate from other filter items when wrapped */
+  margin-bottom: 0.5rem;
+}
+
+.custom-filter-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+  cursor: pointer;
+  /* Adjust margin for smaller screens */
+  margin-right: 1rem;
+}
+
+.custom-filter-button p {
+  font-family: var(--font-family);
+  color: var(--text-color2);
+  font-size: 13px;
+  margin-left: 0.35rem;
+  margin-top: 0.05rem;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem; /* Added margin for wrapping */
+  flex-grow: 1; /* Allow search input to grow */
+  margin-right: 1rem; /* Added margin to separate from date picker */
+  max-width: 300px; /* Limit max width */
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin-left: 0.5rem;
+  width: 100%; /* Make input take full width of its container */
+}
+
+
+.rightsidebar-filter-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* Allow wrapping for date inputs */
+  flex-wrap: wrap;
+}
+
+.date-range-picker {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem; /* Added margin for wrapping */
+}
+
+.date-range-picker label {
+  margin-right: 0.5rem;
+  font-size: 13px; /* Adjusted font size */
+  font-family: var(--font-family);
+  color: var(--text-color2);
+}
+
+
+.filter-date {
+  margin-right: 0;
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  /* Add margin to separate date inputs when wrapped */
+  /* margin-bottom: 0.5rem; Removed as date-range-picker has margin */
+  font-size: 13px; /* Adjusted font size */
+  font-family: var(--font-family);
+  color: var(--text-color2);
+}
+
+.clear-date-button {
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  cursor: pointer;
+  margin-left: 0.5rem; /* Added margin */
+  margin-bottom: 0.5rem; /* Added margin for wrapping */
+  font-size: 13px; /* Adjusted font size */
+}
+
+
+.rightsidebar-filter-progress {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  column-gap: 0.5rem;
+  row-gap: 0.5rem; /* Added row-gap for better spacing on wrap */
+  margin-bottom: 1rem;
+}
+
+/* Container for the table and grid views */
+.order-table-container {
+  overflow-x: auto; /* Add horizontal scroll to this container */
+  margin-bottom: 1rem; /* Add some space below the table/grid */
+  width: 100%; /* Ensure container takes full width */
+  box-sizing: border-box; /* Include padding/border in width */
+}
+
+
+.rightsidebar-table {
+    /* Ensure this container does not cause overflow and contains its children */
+     width: 100%;
+     overflow: hidden; /* Hide any overflow from this container */
+     box-sizing: border-box; /* Include padding/border in width */
+}
+
+
+.custom-table {
+  width: 100%; 
+/* Ensure table takes full width of its container */
+  max-width: 100%; /* Added max-width to help contain the table */
+  border-collapse: collapse;
+  font-size: 14px;
+  display: block; /* Added to enable horizontal scrolling */
+  /* Removed overflow-x: auto from here, moved to .order-table-container */
+  white-space: nowrap; /* Prevent text wrapping in table cells */
+}
+
+.custom-table tr {
+  cursor: pointer;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid var(--border);
+  padding: 8px;
+  text-align: left;
+  white-space: nowrap; /* Ensure text stays on a single line */
+}
+
+.custom-table th {
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap; /* Ensure text stays on a single line */
+}
+
+.custom-table td {
+  font-family: var(--font-family);
+  color: var(--text-color2);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.custom-table thead {
+  background-color: #f5f5f5;
+}
+
+.grid-view {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.custom-grid {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.custom-grid-top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+/* .custom-grid-bottom-container{
+
+} */
+.custom-grid-bottom-container h3 {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.custom-grid-bottom-container p {
+  font-family: var(--font-family);
+  color: var(--text-color2);
+  font-size: 12px;
+}
+
+.custom-line {
+  height: 1.5px;
+  background-color: var(--border);
+  margin: 1rem 0;
+}
+
+.custom-grid-bottom-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-grid-bottom-date p {
+  font-family: var(--font-family);
+  color: var(--text-color2);
+  font-size: 12px;
+}
+
+.custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.form-group label {
+  margin-bottom: 4px;
+  font-weight: bold;
+  font-family: var(--font-family);
+  font-size: 16px;
+}
+
+.input-field {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%; /* Ensure input fields take full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--background-color);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.repair-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.repair-box {
+  padding: 6px 12px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.repair-box.selected {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.custom-repair {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-add {
+  padding: 8px 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.textarea {
+  min-height: 150px;
+  max-height: 300px;
+  width: 100%; /* Ensure textarea takes full width */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.no-margin {
+  margin-top: 0;
+}
+
+/* info modal */
+
+.info-group {
+  margin-bottom: 12px;
+}
+
+.info-group strong {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.info-group p {
+  margin: 0;
+  font-size: 15px;
+  color: #555;
+  word-wrap: break-word; /* Allow text to wrap in info modal */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-danger:hover {
+  opacity: 0.9;
+}
+
+.custom-grid-pagination {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  /* Allow pagination to wrap on smaller screens */
+  flex-wrap: wrap;
+}
+
+.table {
+  margin-top: 2rem;
+}
+
+.active>.page-link,
+.page-link.active {
+  z-index: 3;
+  color: var(--bs-pagination-active-color);
+  background-color: var(--background-color);
+  border-color: var(--background-color);
+  color: white !important;
+}
+
+.page-link {
+  font-family: var(--font-family) !important;
+  font-size: 10px !important;
+  color: var(--text-color2) !important;
+}
+
+/* --- Responsive Design --- */
+
+/* Tablet styles */
+@media screen and (max-width: 1200px) {
+  .rightsidebar-navbar h3 {
+    font-size: 23px !important;
+  }
+
+  .rightsidebar-button {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .rightsidebar-filter {
+    margin: 1rem 0;
+  }
+
+  .custom-filter-button {
+    margin-right: 1rem;
+  }
+
+  .rightsidebar-filter-progress {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+  }
+
+  /* Manage overflow for the table container */
+  .order-table-container {
+      overflow-x: auto; /* Add horizontal scroll to this container */
+      width: 100%; /* Ensure container takes full width */
+      box-sizing: border-box; /* Include padding/border in width */
+  }
+
+  .rightsidebar-table {
+       width: 100%;
+       overflow: hidden; /* Hide any overflow from this container */
+       box-sizing: border-box; /* Include padding/border in width */
+  }
+
+  .custom-table {
+    /* Ensure these are applied */
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%; /* Added max-width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+  }
+
+  .custom-table th,
+  .custom-table td {
+    white-space: nowrap; /* Keep text on a single line */
+  }
+
+
+  .grid-view {
+    grid-template-columns: repeat(3, 1fr); /* Show 3 columns on tablets */
+    gap: 0.8rem;
+  }
+
+  .custom-grid {
+    padding: 0.8rem;
+  }
+
+  .custom-grid-bottom-container h3 {
+    font-size: 15px;
+  }
+
+  .custom-grid-bottom-container p {
+    font-size: 11px;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 6px;
+  }
+
+  .custom-table th {
+    font-size: 13px;
+  }
+
+  .custom-table td {
+    font-size: 11px;
+  }
+
+  .page-link {
+    font-size: 9px !important;
+  }
+}
+
+/* Larger Mobile styles */
+@media screen and (max-width: 800px) {
+  .rightsidebar-navbar h3 {
+    font-size: 21px !important;
+  }
+
+  .rightsidebar-button {
+    padding: 0.5rem 0.7rem;
+  }
+
+  .rightsidebar-filter {
+    margin: 0.8rem 0;
+    flex-direction: column; /* Stack filter items vertically */
+    align-items: flex-start;
+  }
+
+  .rightsidebar-filter-button {
+    margin-bottom: 0.5rem;
+  }
+
+  .custom-filter-button {
+    margin-right: 0.8rem;
+  }
+
+  .rightsidebar-filter-date {
+    flex-direction: column; /* Stack date inputs vertically */
+    align-items: flex-start;
+  }
+
+  .date-range-picker {
+    margin-bottom: 0.5rem;
+  }
+
+  .filter-date {
+    margin-bottom: 0; /* Adjusted as date-range-picker has margin */
+  }
+
+
+  .rightsidebar-filter-progress {
+    grid-template-columns: repeat(3, 1fr); /* Show 3 columns on larger mobile */
+    column-gap: 0.4rem;
+    row-gap: 0.4rem;
+  }
+
+  /* Manage overflow for the table container */
+  .order-table-container {
+      overflow-x: auto; /* Add horizontal scroll to this container */
+      width: 100%; /* Ensure container takes full width */
+      box-sizing: border-box; /* Include padding/border in width */
+  }
+
+  .rightsidebar-table {
+    /* Ensure this container does not cause overflow and contains its children */
+     width: 100%;
+     overflow: hidden; /* Hide any overflow from this container */
+     box-sizing: border-box; /* Include padding/border in width */
+  }
+
+
+  .custom-table {
+    display: block; /* Make the table a block element */
+    overflow-x: auto; /* Enable horizontal scrolling for the table */
+    white-space: nowrap; /* Prevent text wrapping in table cells */
+    width: 100%; /* Make the table take the full width of its container */
+    max-width: 100%; /* Added max-width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    min-width: 0; /* Allow the table to shrink below its intrinsic content width */
+  }
+
+  .custom-table th,
+  .custom-table td {
+    white-space: nowrap; /* Keep text on a single line */
+    padding: 5px; /* Adjusted padding for smaller screens */
+  }
+
+  .custom-table th {
+      font-size: 12px; /* Adjusted font size */
+  }
+
+  .custom-table td {
+      font-size: 10px; /* Adjusted font size */
+  }
+
+  .grid-view {
+    grid-template-columns: repeat(2, 1fr); /* Show 2 columns on larger mobile */
+    gap: 0.7rem;
+  }
+
+  .custom-grid {
+    padding: 0.7rem;
+  }
+
+  .custom-grid-bottom-container h3 {
+    font-size: 14px;
+  }
+
+  .custom-grid-bottom-container p {
+    font-size: 10px;
+  }
+
+
+  .modal-title h3 {
+    font-size: 17px !important;
+  }
+
+  .info-group strong {
+    font-size: 13px;
+  }
+
+  .info-group p {
+    font-size: 14px;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+}
+
+
+/* Mobile styles */
+@media screen and (max-width: 500px) {
+  .rightsidebar-navbar h3 {
+    font-size: 19px !important;
+  }
+
+  .rightsidebar-button {
+    padding: 0.5rem 0.5rem;
+  }
+
+  .rightsidebar-bottom {
+    padding: 0.5rem; /* Example: uniform and smaller padding */
+    overflow-x: hidden; /* Keep parent hidden if table handles scroll */
+  }
+
+  .rightsidebar-filter {
+    margin: 0.5rem 0;
+    flex-direction: column; /* Stack filter items vertically */
+    align-items: flex-start;
+  }
+
+  .rightsidebar-filter-button {
+    margin-bottom: 0.5rem;
+  }
+
+  .custom-filter-button {
+    margin-right: 0.5rem;
+  }
+
+  .search-input-container {
+     margin-right: 0; /* Remove right margin on small mobile */
+     margin-bottom: 1rem; /* Ensure margin bottom is set */
+     max-width: none;
+     margin-top:0.5rem; /* Remove max width constraint */
+  }
+
+
+  .rightsidebar-filter-date {
+    flex-direction: column; /* Stack date inputs vertically */
+    align-items: flex-start;
+  }
+
+  .date-range-picker {
+    margin-bottom: 1rem;
+
+  }
+
+
+  .filter-date {
+    margin-bottom: 0;
+  }
+
+  .clear-date-button {
+    margin-left: 0; /* Remove left margin */
+    margin-bottom: 0.5rem; /* Ensure margin bottom is set */
+  }
+
+
+  .rightsidebar-filter-progress {
+    grid-template-columns: repeat(2, 1fr); /* Show 2 columns on mobile */
+    column-gap: 0.3rem;
+    row-gap: 0.3rem;
+  }
+
+  /* Manage overflow for the table container */
+  .order-table-container {
+      overflow-x: auto; /* Add horizontal scroll to this container */
+      width: 100%; /* Ensure container takes full width */
+      box-sizing: border-box; /* Include padding/border in width */
+  }
+
+    .rightsidebar-table {
+    /* Ensure this container does not cause overflow and contains its children */
+     width: 100%;
+     overflow: hidden; /* Hide any overflow from this container */
+     box-sizing: border-box; /* Include padding/border in width */
+  }
+
+
+   .custom-table {
+    display: block; /* Make the table a block element */
+    overflow-x: auto; /* Enable horizontal scrolling for the table */
+    white-space: nowrap; 
+     width: 100% !important; /* Make the table take the full width of its container */
+     max-width: 100%; /* Added max-width */
+  }
+
+  .custom-table th {
+    font-size: 11px; /* Adjusted font size */
+    /* Ensure no fixed widths are applied here */
+    width: auto !important;
+  }
+
+  .custom-table td {
+      font-size: 10px; /* Adjusted font size */
+      padding: 4px; /* Further adjusted padding */
+  }
+
+  .grid-view {
+    grid-template-columns: 1fr; /* Show 1 column on small mobile */
+    gap: 0.5rem;
+  }
+
+  .grid-view p {
+    font-size: 11px;
+  }
+
+  .modal-title h3 {
+    font-family: var(--font-family);
+    font-size: 15px !important;
+    font-weight: 700;
+  }
+
+  .info-group strong {
+    font-size: 12px;
+  }
+
+  .info-group p {
+    font-size: 13px;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Add a breakpoint for even smaller screens if necessary */
+@media screen and (max-width: 320px) {
+  .rightsidebar-navbar h3 {
+    font-size: 17px !important;
+  }
+
+  .rightsidebar-button {
+    padding: 0.4rem 0.4rem;
+  }
+
+  .rightsidebar-bottom {
+    padding: 0.5rem 0.5rem 0em;
+  }
+
+  .custom-filter-button {
+    margin-right: 0.4rem;
+  }
+
+  .rightsidebar-filter-progress {
+    grid-template-columns: 1fr; /* Stack progress filters vertically */
+  }
+
+  .custom-grid-bottom-container h3 {
+    font-size: 13px;
+  }
+
+  .custom-grid-bottom-container p {
+    font-size: 10px;
+  }
+
+  .custom-table th {
+    font-size: 10px;
+  }
+
+  .custom-table td {
+    font-size: 9px;
+  }
+
+  .modal-title h3 {
+    font-size: 14px !important;
+  }
+}
+

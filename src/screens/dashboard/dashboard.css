@@ -1,0 +1,90 @@
+.dashboard {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+    background-color: #f9f9f9;
+    height: 100vh;
+  }
+
+  .dashboard-left {
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 0.5rem;
+    position: relative;
+    transition: width 0.5s ease;
+    /*width: 300px;*/
+    
+    z-index: 0;
+  }
+  
+  .dashboard.collapsed .dashboard-left {
+    width: 70px;
+    z-index: 0;
+  }
+  
+.left-sidebar-filter{
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 0.3rem;
+    border-radius: 100%;
+    position: absolute;
+    right: -1rem;
+    top: 0.7rem;
+    cursor: pointer;
+z-index: 100;
+display: flex;
+justify-content: center;
+align-items: center;
+    
+}
+.dashboard-right {
+    flex: 1;
+    transition: all 0.5s ease;
+ 
+  }
+
+  @media screen and (max-width: 1200px) {
+    .dashboard {
+        column-gap: 1.5rem;
+        background-color: #f9f9f9;
+        height: 100vh;
+      }
+      .dashboard-left {
+        background-color: white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border-radius: 0.5rem;
+        position: relative;
+        transition: width 0.5s ease;
+        width: 180px;
+        
+        z-index: 0;
+      }
+  }
+  @media screen and (max-width: 800px) {
+    .dashboard {
+        column-gap: 1.5rem;
+        background-color: #f9f9f9;
+        height: 100vh;
+      }
+      .dashboard-left {
+        background-color: white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border-radius: 0.5rem;
+        position: relative;
+        transition: width 0.5s ease;
+        width: 150px;
+        
+        z-index: 2;
+        position: absolute;
+        top: 4.5rem;
+        
+      }
+      .left-sidebar-filter{
+        display: none;
+      }
+      .dashboard-left.show{
+        display: none ;
+        transition: all 0.5s linear;
+      }
+  }
