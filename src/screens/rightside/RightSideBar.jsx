@@ -56,21 +56,19 @@ const RightSideBar = ({ selected }) => {
   const statuses = [
     "All",
     "New",
-    "In progress",
-    "Repair done",
-    "Called",
-    "Pending",
-    "Completed",
+    "In Progress",
+    "Awaiting Parts",
+    "Awaiting Pickup",
+    "Picked Up",
   ];
 
   const [taskCounts, setTaskCounts] = useState({
     All: 0,
     New: 0,
-    "In progress": 0,
-    "Repair done": 0,
-    Called: 0,
-    Pending: 0,
-    Completed: 0,
+    "In Progress": 0,
+    "Awaiting Parts": 0,
+    "Awaiting Pickup": 0,
+    "Picked Up": 0,
   });
 
   const [sortBy, setSortBy] = useState("created_at");
@@ -85,6 +83,7 @@ const RightSideBar = ({ selected }) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleCloseAddModal = () => {
     setShowAddModal(false);
@@ -365,7 +364,7 @@ const RightSideBar = ({ selected }) => {
                   className="search-input"
                 />
               </div>
-              
+
               <div className="rightsidebar-filter-date">
                 {/* Date Range Filter Inputs */}
                 <div className="date-range-picker">
@@ -790,11 +789,10 @@ const RightSideBar = ({ selected }) => {
                 onChange={handleChange}
               >
                 <option>New</option>
-                <option>In progress</option>
-                <option>Repair done</option>
-                <option>Called</option>
-                <option>Pending</option>
-                <option>Completed</option>
+                <option>In Progress</option>
+                <option>Awaiting Parts</option>
+                <option>Awaiting Pickup</option>
+                <option>Picked Up</option>
               </select>
             </div>
             <div className="form-group">
@@ -966,12 +964,14 @@ const RightSideBar = ({ selected }) => {
             Cancel
           </button>
           {/* Delete button */}
-          <button
-            className="btn-danger"
-            onClick={() => handleDelete(selectedItem.id)}
-          >
-            Delete
-          </button>
+          {user.name === "admin" && (
+            <button
+              className="btn-danger"
+              onClick={() => handleDelete(selectedItem.id)}
+            >
+              Delete
+            </button>
+          )}
           {/* Edit button */}
           <button
             className="btn-primary"
@@ -1065,11 +1065,10 @@ const RightSideBar = ({ selected }) => {
                 onChange={handleChange}
               >
                 <option>New</option>
-                <option>In progress</option>
-                <option>Repair done</option>
-                <option>Called</option>
-                <option>Pending</option>
-                <option>Completed</option>
+                <option>In Progress</option>
+                <option>Awaiting Parts</option>
+                <option>Awaiting Pickup</option>
+                <option>Picked Up</option>
               </select>
             </div>
             <div className="form-group">
@@ -1078,21 +1077,58 @@ const RightSideBar = ({ selected }) => {
                 selectedRepairs={repairs}
                 setSelectedRepairs={setRepairs}
               />
-              <p>Selected Repairs: {repairs.join(" ")}</p>
+              <p className="pb-2">Selected Repairs:</p>
+              <div className="selected-repairs-list">
+                {Array.isArray(repairs) && repairs.length > 0 ? (
+                  repairs.map((repair, index) => (
+                    <div key={index} className="selected-repair-item">
+                      <span>{repair}</span>
+                      <button
+                        type="button"
+                        className="remove-repair-button"
+                        onClick={() => {
+                          const updatedRepairs = repairs.filter(
+                            (_, i) => i !== index
+                          );
+                          setRepairs(updatedRepairs);
+                        }}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <p>No repairs selected</p>
+                )}
+              </div>
             </div>
             <div className="form-group">
               {/* PartSelector component for editing */}
               <PartSelector selectedParts={parts} setSelectedParts={setParts} />
-              <p>
-                Selected Parts:{" "}
-                {Array.isArray(parts)
-                  ? parts
-
-                      .map((part) => `${part.name} (${part.quantity})`)
-
-                      .join(", ")
-                  : parts}
-              </p>
+              <div className="selected-parts-list">
+                {Array.isArray(parts) && parts.length > 0 ? (
+                  parts.map((part, index) => (
+                    <div key={index} className="selected-part-item">
+                      <span>
+                        {part.name} (Qty: {part.quantity})
+                      </span>
+                      <button
+                        type="button"
+                        className="remove-part-button"
+                        onClick={() => {
+                          const updatedParts = [...parts];
+                          updatedParts.splice(index, 1);
+                          setParts(updatedParts);
+                        }}
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <p>No parts selected</p>
+                )}
+              </div>
             </div>
             <div className="form-group">
               <label htmlFor="editPriority">Priority</label>

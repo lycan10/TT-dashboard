@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
-import { Calendar03Icon, ArrowUp01Icon, ArrowDown01Icon, Menu01Icon } from '@hugeicons/core-free-icons';
+import { Menu01Icon } from '@hugeicons/core-free-icons';
 import "./navbar.css";
 import avatar from "../../assets/a1.png";
 import { useSidebar } from '../../context/SideBarContext';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
     const { sidebarShow, toggleSidebar } = useSidebar();
-
-    const user = JSON.parse(localStorage.getItem('user'));
+    const { user, logout } = useAuth();
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const getFormattedDate = () => {
         const today = new Date();
@@ -16,38 +17,39 @@ const Navbar = () => {
         return today.toLocaleDateString('en-US', options);
     };
 
-  return (
-    <div className='navbar'>
-        <div className='navbar-container'>
-        <div className="navbar-date">
-        <div className={`mobile-filter ${sidebarShow ? 'show' : ''}`} onClick={toggleSidebar}>
-        <HugeiconsIcon
-      icon={Menu01Icon}
-      size={16}
-      color="#000000"
-      strokeWidth={1.5}
-    />
-        </div>
-        {/*<HugeiconsIcon icon={Calendar03Icon} color='#545454' size={16}  />*/}
-            <div className='navbar-date-title'>
-                <p>{getFormattedDate()}</p>
+    const handleLogout = async () => {
+        await logout();
+        window.location.reload(); // Optional: refresh to reset state
+    };
+
+    return (
+        <div className='navbar'>
+            <div className='navbar-container'>
+                <div className="navbar-date">
+                    <div className={`mobile-filter ${sidebarShow ? 'show' : ''}`} onClick={toggleSidebar}>
+                        <HugeiconsIcon icon={Menu01Icon} size={16} color="#000000" strokeWidth={1.5} />
+                    </div>
+                    <div className='navbar-date-title'>
+                        <p>{getFormattedDate()}</p>
+                    </div>
+                </div>
+
+                <div className="navbar-right">
+                    <div className="navbar-image" onClick={() => setDropdownOpen(!dropdownOpen)}>
+                        <img src={avatar} alt="User" />
+                        {dropdownOpen && (
+                            <div className="navbar-dropdown">
+                                <p onClick={handleLogout}>Logout</p>
+                            </div>
+                        )}
+                    </div>
+                    <div className="navbar-text">
+                        <p>{user ? user.name : 'Guest'}</p>
+                    </div>
+                </div>
             </div>
-            <div className='navbar-date-arrow'>
-            {/*<HugeiconsIcon icon={ArrowUp01Icon}  color='#545454' size={16} />
-            <HugeiconsIcon icon={ArrowDown01Icon}  color='#545454' size={16}   />*/}
-            </div>
         </div>
-        <div className="navbar-right">
-            <div className="navbar-image">
-                <img src={avatar} alt="" />
-            </div>
-            <div className="navbar-text">
-                <p>{user ? user.name : 'Guest'}</p>
-            </div>
-        </div>
-        </div>
-    </div>
-  )
-}
+    );
+};
 
 export default Navbar;

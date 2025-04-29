@@ -847,3 +847,52 @@
   }
 }
 
+.selected-parts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.selected-part-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f3f3;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.remove-part-button {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.selected-repairs-list,
+.selected-parts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.selected-repair-item,
+.selected-part-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f3f3;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.remove-repair-button,
+.remove-part-button {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+}
