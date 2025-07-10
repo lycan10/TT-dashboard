@@ -495,7 +495,7 @@ const Inventory = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group">
+            {/*<div className="form-group">
               <label htmlFor="partNumber">Part Number</label>
               <input
                 type="text"
@@ -505,6 +505,61 @@ const Inventory = () => {
                 value={inventoryFormData.partNumber}
                 onChange={handleChange}
               />
+            </div>*/}
+
+            <div className="form-group">
+              <div className="repair-selector part-selector">
+                <label>Part Number</label>
+
+                <div className="custom-repair">
+                  <input
+                    type="text"
+                    id="editPartNumber"
+                    name="partNumber"
+                    value={inventoryFormData.partNumber}
+                    onChange={handleChange}
+                    className="input-field"
+                    placeholder="Part name"
+                  />
+                  <div className="quantity-container">
+                    <button
+                      type="button"
+                      className="quantity-btn"
+                      onClick={decreaseQuantity}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      id="editQuantity"
+                      name="quantity"
+                      className="input-field quantity-input"
+                      value={inventoryFormData.quantity}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value, 10);
+                        if (!isNaN(value) && value > 0) {
+                          setInventoryFormData((prev) => ({
+                            ...prev,
+                            quantity: value,
+                          }));
+                        } else if (value === 0) {
+                          setInventoryFormData((prev) => ({
+                            ...prev,
+                            quantity: 1,
+                          }));
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className="quantity-btn"
+                      onClick={increaseQuantity}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="form-group">
               <label htmlFor="vendor">Vendor</label>
@@ -517,7 +572,7 @@ const Inventory = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group">
+            {/*<div className="form-group">
               <PartSelector selectedParts={parts} setSelectedParts={setParts} />
               <div className="selected-parts-list">
                 {Array.isArray(parts) && parts.length > 0 ? (
@@ -584,7 +639,7 @@ const Inventory = () => {
                   +
                 </button>
               </div>
-            </div>
+            </div>*/}
 
             <div className="form-group">
               <label htmlFor="comments">Comments</label>
@@ -649,7 +704,7 @@ const Inventory = () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group">
+            {/*<div className="form-group">
               <label htmlFor="editPartNumber">Part Number</label>
               <input
                 type="text"
@@ -659,32 +714,59 @@ const Inventory = () => {
                 value={inventoryFormData.partNumber}
                 onChange={handleChange}
               />
-            </div>
+            </div>*/}
             <div className="form-group">
-              <PartSelector selectedParts={parts} setSelectedParts={setParts} />
-              <div className="selected-parts-list">
-                {Array.isArray(parts) && parts.length > 0 ? (
-                  parts.map((part, index) => (
-                    <div key={index} className="selected-part-item">
-                      <span>
-                        {part.name} (Qty: {part.quantity})
-                      </span>
-                      <button
-                        type="button"
-                        className="remove-part-button"
-                        onClick={() => {
-                          const updatedParts = [...parts];
-                          updatedParts.splice(index, 1);
-                          setParts(updatedParts);
-                        }}
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))
-                ) : (
-                  <p>No parts selected</p>
-                )}
+              <div className="repair-selector part-selector">
+                <label>Part Number</label>
+
+                <div className="custom-repair">
+                  <input
+                    type="text"
+                    id="editPartNumber"
+                    name="partNumber"
+                    value={inventoryFormData.partNumber}
+                    onChange={handleChange}
+                    className="input-field"
+                    placeholder="Part name"
+                  />
+                  <div className="quantity-container">
+                    <button
+                      type="button"
+                      className="quantity-btn"
+                      onClick={decreaseQuantity}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      id="editQuantity"
+                      name="quantity"
+                      className="input-field quantity-input"
+                      value={inventoryFormData.quantity}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value, 10);
+                        if (!isNaN(value) && value > 0) {
+                          setInventoryFormData((prev) => ({
+                            ...prev,
+                            quantity: value,
+                          }));
+                        } else if (value === 0) {
+                          setInventoryFormData((prev) => ({
+                            ...prev,
+                            quantity: 1,
+                          }));
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className="quantity-btn"
+                      onClick={increaseQuantity}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -700,7 +782,7 @@ const Inventory = () => {
               />
             </div>
 
-            <div className="form-group">
+            {/*<div className="form-group">
               <label htmlFor="editQuantity">Quantity</label>
               <div className="quantity-container">
                 <button
@@ -739,7 +821,7 @@ const Inventory = () => {
                   +
                 </button>
               </div>
-            </div>
+            </div>*/}
 
             <div className="form-group">
               <label htmlFor="editComments">Comments</label>

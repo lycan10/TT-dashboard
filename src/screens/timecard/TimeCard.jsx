@@ -60,7 +60,6 @@ const TimeCard = () => {
   );
   const itemsPerPage = timeCardPaginationData.per_page || 50;
 
-  // New state for date filter, defaulting to today
   const [selectedDate, setSelectedDate] = useState(
     new Date().toISOString().slice(0, 10)
   );
@@ -95,6 +94,7 @@ const TimeCard = () => {
     clock_in: null,
     clock_out: null,
     status: "Inactive",
+    date: selectedDate
   });
 
   const [editingTimeCard, setEditingTimeCard] = useState(null);
@@ -140,6 +140,7 @@ const TimeCard = () => {
       clock_in: null,
       clock_out: null,
       status: "Inactive",
+      date: selectedDate
     });
   };
 
@@ -190,6 +191,7 @@ const TimeCard = () => {
         ? new Date(timeCard.clock_out).toISOString().slice(0, 16)
         : null,
       status: timeCard.status || "Inactive",
+      date: selectedDate
     });
     handleShowEditModal();
   };
@@ -644,10 +646,15 @@ const TimeCard = () => {
                     </td>
                     <td>
                       {timeCard.clock_in
-                        ? new Date(timeCard.clock_in).toLocaleTimeString([], {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })
+                        ? new Date(timeCard.clock_in).toLocaleTimeString(
+                            "en-US",
+                            {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                              timeZone: "UTC",
+                            }
+                          )
                         : "N/A"}
                     </td>
                     <td>{timeCard.total_break_duration || "0h 0m"}</td>
@@ -656,10 +663,15 @@ const TimeCard = () => {
                     {/* Display overtime */}
                     <td>
                       {timeCard.clock_out
-                        ? new Date(timeCard.clock_out).toLocaleTimeString([], {
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })
+                        ? new Date(timeCard.clock_out).toLocaleTimeString(
+                            "en-US",
+                            {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                              timeZone: "UTC",
+                            }
+                          )
                         : "N/A"}
                     </td>
                     <td>
