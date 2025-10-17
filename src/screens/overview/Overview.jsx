@@ -18,6 +18,7 @@ import {
 import { useOverview } from "../../context/OverviewContext";
 import "../order/order.css";
 import "../overview/overview.css";
+import { useAuth } from "../../context/AuthContext";
 
 const Overview = () => {
   const { 
@@ -31,6 +32,7 @@ const Overview = () => {
   
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [tempDateRange, setTempDateRange] = useState(dateRange);
+    const { user } = useAuth();
 
   const formatDate = (dateString) =>
     new Date(dateString).toLocaleDateString("en-US", {
@@ -236,6 +238,25 @@ const Overview = () => {
       </div>
     );
   }
+
+  if (user.role !== 'admin') {
+    return (
+      <div className="order-page">
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '400px',
+          flexDirection: 'column',
+          gap: '1rem'
+        }}>
+          <h2 style={{ color: '#ef4444' }}>Access Denied</h2>
+          <p style={{ color: '#6b7280' }}>You do not have permission to view this page.</p>
+        </div>
+      </div>
+    );
+  }
+  
 
   return (
     <div className="order-page">

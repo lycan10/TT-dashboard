@@ -59,6 +59,7 @@ const LeftSideBar = ({ selected, onSelect, collapsed }) => {
             </div>
           )}
         </div>
+        {user.role === "admin" && (
         <LeftNavLinks
           icon={DashboardSquare01Icon}
           title="Overview"
@@ -66,6 +67,7 @@ const LeftSideBar = ({ selected, onSelect, collapsed }) => {
           isSelected={selected === "Overview"}
           collapsed={collapsed}
         />
+        )}
 
         <LeftNavLinks
           icon={Home02Icon}
