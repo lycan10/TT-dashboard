@@ -12,6 +12,7 @@ import ChangeUsersPassword from "./screens/ChangeUsersPassword/changeUsersPasswo
 import { InventoryProvider } from "./context/InventoryContext";
 import { HitchProvider } from "./context/HitchContext";
 import { TimeCardProvider } from "./context/TimeCardContext";
+import { OverviewProvider } from './context/OverviewContext';
 
 const ProtectedRoute = ({ element: Component, ...rest }) => {
   const { user, loading } = useAuth();
@@ -29,30 +30,32 @@ function App() {
           <HitchProvider>
             <OrderProvider>
               <TimeCardProvider>
-              <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route
-                  path="/"
-                  element={<ProtectedRoute element={Dashboard} />}
-                />
-                <Route
-                  path="/orders"
-                  element={<ProtectedRoute element={OrderPage} />}
-                />
-                <Route
-                  path="/inventory"
-                  element={<ProtectedRoute element={Inventory} />}
-                />
-                <Route
-                  path="/hitch"
-                  element={<ProtectedRoute element={Hitch} />}
-                />
-                <Route
-                  path="/change-password"
-                  element={<ProtectedRoute element={ChangeUsersPassword} />}
-                />
-                <Route path="*" element={<Navigate to="/" replace />} />
-              </Routes>
+                <OverviewProvider>
+                  <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route
+                      path="/"
+                      element={<ProtectedRoute element={Dashboard} />}
+                    />
+                    <Route
+                      path="/orders"
+                      element={<ProtectedRoute element={OrderPage} />}
+                    />
+                    <Route
+                      path="/inventory"
+                      element={<ProtectedRoute element={Inventory} />}
+                    />
+                    <Route
+                      path="/hitch"
+                      element={<ProtectedRoute element={Hitch} />}
+                    />
+                    <Route
+                      path="/change-password"
+                      element={<ProtectedRoute element={ChangeUsersPassword} />}
+                    />
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </OverviewProvider>
               </TimeCardProvider>
             </OrderProvider>
           </HitchProvider>

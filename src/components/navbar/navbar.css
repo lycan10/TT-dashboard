@@ -19,7 +19,9 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px; /* Adjust as per your layout */
+    margin-right: 1.5rem;
+
+
 }
 
 /* Date Section Styles */

@@ -422,14 +422,14 @@ const Hitch = () => {
                   {sortBy === "jobDescription" &&
                     (sortDirection === "asc" ? "▲" : "▼")}
                 </th>
-                {/*<th
+                <th
                   onClick={() => handleSortClick("partNumber")}
                   style={{ cursor: "pointer" }}
                 >
                   Part Number{" "}
                   {sortBy === "partNumber" &&
                     (sortDirection === "asc" ? "▲" : "▼")}
-                </th>*/}
+                </th>
 
                 <th
                   onClick={() => handleSortClick("status")}
@@ -471,7 +471,7 @@ const Hitch = () => {
                           : hitch.jobDescription}
                       </td>{" "}
                       {/* Changed from order.quantity and added array handling */}
-                      {/*<td>{hitch.partNumber}</td>*/}
+                      <td>{hitch.partNumber}</td>
                       <td>
                         <div
                           style={{
@@ -656,7 +656,7 @@ const Hitch = () => {
                 )}
               </div>
             </div>
-            {/*<div className="form-group">
+            <div className="form-group">
               <label htmlFor="partNumber">Part number</label>
               <input
                 type="text"
@@ -666,7 +666,7 @@ const Hitch = () => {
                 value={hitchFormData.partNumber}
                 onChange={handleChange}
               />
-            </div>*/}
+            </div>
             <div className="form-group">
               <label htmlFor="dateIn">Date In</label>
               <input
@@ -870,7 +870,7 @@ const Hitch = () => {
                 )}
               </div>
             </div>
-            {/*<div className="form-group">
+            <div className="form-group">
               <label htmlFor="partNumber">Part number</label>
               <input
                 type="text"
@@ -880,7 +880,7 @@ const Hitch = () => {
                 value={hitchFormData.partNumber}
                 onChange={handleChange}
               />
-            </div>*/}
+            </div>
             <div className="form-group">
               <label htmlFor="dateIn">Date In</label>
               <input

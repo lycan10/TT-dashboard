@@ -9,6 +9,7 @@ import {
   Car02FreeIcons,
   CalendarAdd01FreeIcons,
   LogoutIcon,
+  DashboardSquare01Icon
 } from "@hugeicons/core-free-icons";
 import { useSidebar } from "../../context/SideBarContext";
 import { useAuth } from "../../context/AuthContext";
@@ -58,6 +59,13 @@ const LeftSideBar = ({ selected, onSelect, collapsed }) => {
             </div>
           )}
         </div>
+        <LeftNavLinks
+          icon={DashboardSquare01Icon}
+          title="Overview"
+          onClick={() => handleLinkClick("Overview")}
+          isSelected={selected === "Overview"}
+          collapsed={collapsed}
+        />
 
         <LeftNavLinks
           icon={Home02Icon}

@@ -28,6 +28,7 @@ import Inventory from "../Inventory/Inventory";
 import Hitch from "../hitch/Hitch";
 import TimeCard from "../timecard/TimeCard";
 import ChangeUsersPassword  from "../ChangeUsersPassword/changeUsersPassword";
+import Overview from "../overview/Overview.jsx";
 
 const getPriorityStyles = (priority) => {
   switch (priority) {
@@ -174,6 +175,11 @@ const RightSideBar = ({ selected }) => {
 
   const handleEditSubmit = async () => {
     if (!selectedItem.id) return;
+    const toUTC = (dateString) => {
+        if (!dateString) return null;
+        const date = new Date(dateString);
+        return date.toISOString(); 
+    };
     const finalData = {
       ...formData,
       phoneNumber: formData.phoneNumber,
@@ -181,6 +187,8 @@ const RightSideBar = ({ selected }) => {
       plateNumber: formData.plateNumber,
       repairNeeded: repairs,
       partsNeeded: parts,
+      dateIn: toUTC(formData.dateIn),
+      dateOut: toUTC(formData.dateOut),
     };
     const success = await updateTask(selectedItem.id, finalData);
     if (success) {
@@ -198,14 +206,20 @@ const RightSideBar = ({ selected }) => {
   };
 
   const handleEditClick = (item) => {
+    const formatDateForInput = (dateStr) => {
+      if (!dateStr) return "";
+      const date = new Date(dateStr);
+      if (isNaN(date)) return ""; // invalid date
+      return date.toISOString().split("T")[0];
+    };
     setSelectedItem(item);
     setFormData({
       customerName: item.customerName || "",
       phoneNumber: item.phoneNumber || "",
       email: item.email || "",
       plateNumber: item.plateNumber || "",
-      dateIn: item.dateIn || "",
-      dateOut: item.dateOut || "",
+      dateIn: formatDateForInput(item.dateIn),
+      dateOut: formatDateForInput(item.dateOut),
       progress: item.progress || "New",
       comments: item.comments || "",
       priority: item.priority || "Low",
@@ -336,6 +350,11 @@ const RightSideBar = ({ selected }) => {
       <div className="rightsidebar-container">
         <Navbar />
         {/* Render Dashboard content if selected */}
+        {selected === "Overview" && (
+          <div className="rightsidebar-bottom">
+            <Overview />
+          </div>
+        )}
         {selected === "Dashboard" && (
           <div className="rightsidebar-bottom">
             <div className="rightsidebar-navbar">
@@ -538,6 +557,12 @@ const RightSideBar = ({ selected }) => {
                               (sortDirection === "asc" ? "▲" : "▼")}
                           </th>
                           <th
+                            onClick={() => handleSortClick("dateOut")}
+                            style={{ cursor: "pointer" }}
+                          >
+                            Duration{" "}
+                          </th>
+                          <th
                             onClick={() => handleSortClick("progress")}
                             style={{ cursor: "pointer" }}
                           >
@@ -593,8 +618,9 @@ const RightSideBar = ({ selected }) => {
                                     ? `${item.plateNumber.slice(0, 8)}...`
                                     : item.plateNumber}
                                 </td>
-                                <td>{item.dateIn}</td>
-                                <td>{item.dateOut}</td>
+                                <td>{item.dateIn  ? new Date(item.dateIn).toISOString().substring(0, 10): 'N/A'}</td>
+                                <td>{item.dateOut  ? new Date(item.dateOut).toISOString().substring(0, 10): 'N/A'}</td>
+                                <td>{item.duration}</td>
                                 <td>{item.progress}</td>
                                 <td>
                                   {Array.isArray(item.repairNeeded)
@@ -823,7 +849,6 @@ const RightSideBar = ({ selected }) => {
                 onChange={handleChange}
               />
             </div>
-            {/* Added Phone Number Input */}
             <div className="form-group">
               <label htmlFor="phoneNumber">Phone Number</label>
               <input
@@ -835,7 +860,6 @@ const RightSideBar = ({ selected }) => {
                 onChange={handleChange}
               />
             </div>
-            {/* Added email Input */}
             <div className="form-group">
               <label htmlFor="email">Email</label>
               <input
@@ -847,7 +871,6 @@ const RightSideBar = ({ selected }) => {
                 onChange={handleChange}
               />
             </div>
-            {/* Added Plate Number Input */}
             <div className="form-group">
               <label htmlFor="plateNumber">Plate Number</label>
               <input
@@ -899,7 +922,6 @@ const RightSideBar = ({ selected }) => {
               </select>
             </div>
             <div className="form-group">
-              {/* RepairSelector component */}
               <RepairSelector
                 selectedRepairs={repairs}
                 setSelectedRepairs={setRepairs}
@@ -907,7 +929,6 @@ const RightSideBar = ({ selected }) => {
               <p>Selected Repairs: {repairs.join(", ")}</p>
             </div>
             <div className="form-group">
-              {/* PartSelector component */}
               <PartSelector selectedParts={parts} setSelectedParts={setParts} />
               <p>
                 Selected Parts:{" "}
@@ -990,11 +1011,11 @@ const RightSideBar = ({ selected }) => {
               </div>
               <div className="info-group">
                 <strong>Date In:</strong>
-                <p>{selectedItem.dateIn}</p>
+                <p>{selectedItem.dateIn  ? new Date(selectedItem.dateIn).toISOString().substring(0, 10): 'N/A'}</p>
               </div>
               <div className="info-group">
                 <strong>Date Out:</strong>
-                <p>{selectedItem.dateOut}</p>
+                <p>{selectedItem.dateOut  ? new Date(selectedItem.dateOut).toISOString().substring(0, 10): 'N/A'}</p>
               </div>
               <div className="info-group">
                 <strong>Status:</strong>
@@ -1045,13 +1066,14 @@ const RightSideBar = ({ selected }) => {
                     {selectedItem.history.map((historyEntry) => (
                       <li key={historyEntry.id}>
                         {historyEntry.changes &&
-                        typeof historyEntry.changes === "string" ? (
+                        /*typeof historyEntry.changes === "string" ? (
                           JSON.parse(historyEntry.changes).map(
                             (change, index) => <p key={index}>{change}</p>
                           )
-                        ) : (
+                        ) : (*/
                           <p>{historyEntry.changes}</p>
-                        )}
+                        //)
+                        }
                         <small>
                           by{" "}
                           {historyEntry.user
