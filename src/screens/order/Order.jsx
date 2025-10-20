@@ -383,11 +383,11 @@ const Order = () => {
                   const { color, bgColor } = getStatusStyles(order.status);
                   return (
                     <tr key={order.id}>
-                      <td>{order.id}</td>
-                      <td>{order.partName}</td>
-                      <td>{order.quantity}</td>
-                      <td>{order.vendor}</td>
-                      <td>{order.comments}</td>
+                      <td>{order?.id}</td>
+                      <td>{order?.partName}</td>
+                      <td>{order?.quantity}</td>
+                      <td>{order?.vendor}</td>
+                      <td>{order?.comments}</td>
                       <td>
                         <div
                           style={{
@@ -402,7 +402,7 @@ const Order = () => {
                             width: "fit-content",
                           }}
                         >
-                          {order.status}
+                          {order?.status}
                         </div>
                       </td>
                       <td>
@@ -663,7 +663,6 @@ const Order = () => {
               </div>
             </div>
 
-             {/* Added Comments Input for Edit Form */}
             <div className="form-group">
               <label htmlFor="editComments">Comments</label>
               <textarea

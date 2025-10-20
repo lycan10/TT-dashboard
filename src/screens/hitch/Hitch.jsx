@@ -459,16 +459,16 @@ const Hitch = () => {
                         handleShowInfoModal();
                       }}
                     >
-                      <td>{hitch.id}</td>
-                      <td>{hitch.customerName}</td>
-                      <td>{hitch.phoneNumber}</td>
-                      <td>{hitch.vehicleMake}</td>
-                      <td>{hitch.vehicleModel}</td>
-                      <td>{hitch.vehicleYear}</td>
+                      <td>{hitch?.id}</td>
+                      <td>{hitch?.customerName}</td>
+                      <td>{hitch?.phoneNumber}</td>
+                      <td>{hitch?.vehicleMake}</td>
+                      <td>{hitch?.vehicleModel}</td>
+                      <td>{hitch?.vehicleYear}</td>
                       <td>
-                        {Array.isArray(hitch.jobDescription)
+                        {Array.isArray(hitch?.jobDescription)
                           ? hitch.jobDescription.join(", ")
-                          : hitch.jobDescription}
+                          : hitch?.jobDescription}
                       </td>{" "}
                       {/* Changed from order.quantity and added array handling */}
                       <td>{hitch.partNumber}</td>
@@ -486,7 +486,7 @@ const Hitch = () => {
                             width: "fit-content",
                           }}
                         >
-                          {hitch.status}
+                          {hitch?.status}
                         </div>
                       </td>
                     </tr>
@@ -971,83 +971,82 @@ const Hitch = () => {
             <>
               <div className="info-group">
                 <strong>Customer Name:</strong>
-                <p>{selectedItem.customerName}</p>
+                <p>{selectedItem?.customerName}</p>
               </div>
               <div className="info-group">
                 <strong>Phone Number:</strong>
-                <p>{selectedItem.phoneNumber}</p>
+                <p>{selectedItem?.phoneNumber}</p>
               </div>
               <div className="info-group">
                 <strong>Vehicle make:</strong>
-                <p>{selectedItem.vehicleMake}</p>
+                <p>{selectedItem?.vehicleMake}</p>
               </div>
               <div className="info-group">
                 <strong>Vehicle model:</strong>
-                <p>{selectedItem.vehicleModel}</p>
+                <p>{selectedItem?.vehicleModel}</p>
               </div>
               <div className="info-group">
                 <strong>Vehicle year:</strong>
-                <p>{selectedItem.vehicleYear}</p>
+                <p>{selectedItem?.vehicleYear}</p>
               </div>
 
               <div className="info-group">
                 <strong>Date In:</strong>
-                <p>{selectedItem.dateIn}</p>
+                <p>{selectedItem?.dateIn}</p>
               </div>
               <div className="info-group">
                 <strong>Date Out:</strong>
-                <p>{selectedItem.dateOut}</p>
+                <p>{selectedItem?.dateOut}</p>
               </div>
               <div className="info-group">
                 <strong>Price:</strong>
-                <p>{selectedItem.price}</p>
+                <p>{selectedItem?.price}</p>
               </div>
               <div className="info-group">
                 <strong>Status:</strong>
-                <p>{selectedItem.status}</p>
+                <p>{selectedItem?.status}</p>
               </div>
               <div className="info-group">
                 <strong>Job description:</strong>
                 <p>
-                  {Array.isArray(selectedItem.jobDescription)
+                  {Array.isArray(selectedItem?.jobDescription)
                     ? selectedItem.jobDescription.join(", ")
                     : selectedItem.jobDescription}{" "}
-                  // Changed from repairNeeded
                 </p>
               </div>
               <div className="info-group">
                 <strong>Parts Needed:</strong>
                 <p>
-                  {Array.isArray(selectedItem.partsNeeded)
+                  {Array.isArray(selectedItem?.partsNeeded)
                     ? selectedItem.partsNeeded
                         .map((part) => `${part.name} (Qty: ${part.quantity})`)
                         .join(", ")
-                    : selectedItem.partsNeeded}
+                    : selectedItem?.partsNeeded}
                 </p>
               </div>
               {selectedItem.comments && (
                 <div className="info-group">
                   <strong>Comments:</strong>
-                  <p>{selectedItem.comments}</p>
+                  <p>{selectedItem?.comments}</p>
                 </div>
               )}
 
               {selectedItem.author && (
                 <div className="info-group">
                   <strong>Created By:</strong>
-                  <p>{selectedItem.author.name}</p>
+                  <p>{selectedItem?.author.name}</p>
                 </div>
               )}
 
-              {selectedItem.history && selectedItem.history.length > 0 && (
+              {selectedItem?.history && selectedItem?.history.length > 0 && (
                 <div className="info-group">
                   <strong>Hitch Request History:</strong>
                   <ul>
                     {selectedItem.history.map((historyEntry) => (
-                      <li key={historyEntry.id}>
+                      <li key={historyEntry?.id}>
                         {historyEntry.changes &&
                         typeof historyEntry.changes === "string" ? (
-                          JSON.parse(historyEntry.changes).map(
+                          JSON.parse(historyEntry?.changes).map(
                             (change, index) => <p key={index}>{change}</p>
                           )
                         ) : (
@@ -1055,8 +1054,8 @@ const Hitch = () => {
                         )}
                         <small>
                           by{" "}
-                          {historyEntry.user
-                            ? historyEntry.user.name
+                          {historyEntry?.user
+                            ? historyEntry?.user.name
                             : "Unknown User"}{" "}
                           on{" "}
                           {new Date(historyEntry.created_at).toLocaleString()}

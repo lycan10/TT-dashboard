@@ -379,13 +379,13 @@ const Inventory = () => {
                 displayedInventories.map((inventory) => {
                   const { color, bgColor } = getStatusStyles(inventory.status);
                   return (
-                    <tr key={inventory.id}>
-                      <td>{inventory.id}</td>
-                      <td>{inventory.partName}</td>
-                      <td>{inventory.partNumber}</td>
-                      <td>{inventory.quantity}</td>
-                      <td>{inventory.vendor}</td>
-                      <td>{inventory.comments}</td>
+                    <tr key={inventory?.id}>
+                      <td>{inventory?.id}</td>
+                      <td>{inventory?.partName}</td>
+                      <td>{inventory?.partNumber}</td>
+                      <td>{inventory?.quantity}</td>
+                      <td>{inventory?.vendor}</td>
+                      <td>{inventory?.comments}</td>
                       <td>
                         <div
                           style={{
@@ -400,7 +400,7 @@ const Inventory = () => {
                             width: "fit-content",
                           }}
                         >
-                          {inventory.status}
+                          {inventory?.status}
                         </div>
                       </td>
                       <td>
@@ -491,7 +491,7 @@ const Inventory = () => {
                 id="partName"
                 name="partName"
                 className="input-field"
-                value={inventoryFormData.partName}
+                value={inventoryFormData?.partName}
                 onChange={handleChange}
               />
             </div>
@@ -502,7 +502,7 @@ const Inventory = () => {
                 id="partNumber"
                 name="partNumber"
                 className="input-field"
-                value={inventoryFormData.partNumber}
+                value={inventoryFormData?.partNumber}
                 onChange={handleChange}
               />
             </div>
@@ -513,18 +513,18 @@ const Inventory = () => {
                 id="vendor"
                 name="vendor"
                 className="input-field"
-                value={inventoryFormData.vendor}
+                value={inventoryFormData?.vendor}
                 onChange={handleChange}
               />
             </div>
             <div className="form-group">
               <PartSelector selectedParts={parts} setSelectedParts={setParts} />
               <div className="selected-parts-list">
-                {Array.isArray(parts) && parts.length > 0 ? (
+                {Array.isArray(parts) && parts?.length > 0 ? (
                   parts.map((part, index) => (
                     <div key={index} className="selected-part-item">
                       <span>
-                        {part.name} (Qty: {part.quantity})
+                        {part?.name} (Qty: {part.quantity})
                       </span>
                       <button
                         type="button"

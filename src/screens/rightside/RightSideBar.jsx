@@ -592,7 +592,7 @@ const RightSideBar = ({ selected }) => {
                           Array.isArray(displayedTasks) &&
                           displayedTasks.map((item) => {
                             const { color, bgColor, icon } = getPriorityStyles(
-                              item.priority
+                              item?.priority || "Low"
                             );
                             return (
                               <tr
@@ -602,9 +602,9 @@ const RightSideBar = ({ selected }) => {
                                   handleShowInfoModal();
                                 }}
                               >
-                                <td>{item.id}</td>
-                                <td>{item.customerName}</td>
-                                <td>{item.phoneNumber}</td>
+                                <td>{item?.id}</td>
+                                <td>{item?.customerName}</td>
+                                <td>{item?.phoneNumber}</td>
                                 <td>
                                   {item?.email ? 
                                   (item?.email.length > 10
@@ -614,16 +614,16 @@ const RightSideBar = ({ selected }) => {
                                   ""}
                                 </td>
                                 <td>
-                                  {item.plateNumber.length > 8
+                                  {item?.plateNumber?.length > 8
                                     ? `${item.plateNumber.slice(0, 8)}...`
                                     : item.plateNumber}
                                 </td>
-                                <td>{item.dateIn  ? new Date(item.dateIn).toISOString().substring(0, 10): 'N/A'}</td>
-                                <td>{item.dateOut  ? new Date(item.dateOut).toISOString().substring(0, 10): 'N/A'}</td>
-                                <td>{item.duration}</td>
-                                <td>{item.progress}</td>
+                                <td>{item?.dateIn  ? new Date(item.dateIn).toISOString().substring(0, 10): 'N/A'}</td>
+                                <td>{item?.dateOut  ? new Date(item.dateOut).toISOString().substring(0, 10): 'N/A'}</td>
+                                <td>{item?.duration}</td>
+                                <td>{item?.progress}</td>
                                 <td>
-                                  {Array.isArray(item.repairNeeded)
+                                  {Array.isArray(item?.repairNeeded)
                                     ? (() => {
                                         const joined =
                                           item.repairNeeded.join(", ");
@@ -631,15 +631,15 @@ const RightSideBar = ({ selected }) => {
                                           ? `${joined.slice(0, 12)}...`
                                           : joined;
                                       })()
-                                    : item.repairNeeded}
+                                    : item?.repairNeeded}
                                 </td>
                                 <td>
-                                  {Array.isArray(item.partsNeeded)
+                                  {Array.isArray(item?.partsNeeded)
                                     ? (() => {
-                                        const fullText = item.partsNeeded
+                                        const fullText = item?.partsNeeded
                                           .map(
                                             (part) =>
-                                              `${part.name} (${part.quantity})`
+                                              `${part?.name} (${part?.quantity})`
                                           )
                                           .join(", ");
 
@@ -649,7 +649,7 @@ const RightSideBar = ({ selected }) => {
                                           ? `${fullText.slice(0, maxLength)}...`
                                           : fullText;
                                       })()
-                                    : item.partsNeeded}
+                                    : item?.partsNeeded}
                                 </td>
                                 <td>
                                   <Priority
@@ -743,14 +743,14 @@ const RightSideBar = ({ selected }) => {
                                     </div>
                                   </div>
                                   <div className="custom-grid-bottom-container">
-                                    <h3>{item.customerName}</h3>
-                                    <p>Phone: {item.phoneNumber}</p>
-                                    <p>Phone: {item.email}</p>
-                                    <p>Plate: {item.plateNumber}</p>
+                                    <h3>{item?.customerName}</h3>
+                                    <p>Phone: {item?.phoneNumber}</p>
+                                    <p>Phone: {item?.email}</p>
+                                    <p>Plate: {item?.plateNumber}</p>
                                     <div className="custom-line"></div>
                                     <div className="custom-grid-bottom-date">
-                                      <p>{item.dateIn}</p>
-                                      <p>{item.progress}</p>
+                                      <p>{item?.dateIn}</p>
+                                      <p>{item?.progress}</p>
                                     </div>
                                   </div>
                                 </div>
@@ -934,7 +934,7 @@ const RightSideBar = ({ selected }) => {
                 Selected Parts:{" "}
                 {Array.isArray(parts)
                   ? parts
-                      .map((part) => `${part.name} (${part.quantity})`)
+                      .map((part) => `${part?.name} (${part?.quantity})`)
                       .join(", ")
                   : parts}
               </p>
@@ -993,12 +993,12 @@ const RightSideBar = ({ selected }) => {
             <>
               <div className="info-group">
                 <strong>Customer Name:</strong>
-                <p>{selectedItem.customerName}</p>
+                <p>{selectedItem?.customerName}</p>
               </div>
               {/* Display Phone Number in Info Modal */}
               <div className="info-group">
                 <strong>Phone Number:</strong>
-                <p>{selectedItem.phoneNumber}</p>
+                <p>{selectedItem?.phoneNumber}</p>
               </div>
               <div className="info-group">
                 <strong>Email:</strong>
@@ -1024,7 +1024,7 @@ const RightSideBar = ({ selected }) => {
               <div className="info-group">
                 <strong>Repairs Needed:</strong>
                 <p>
-                  {Array.isArray(selectedItem.repairNeeded)
+                  {Array.isArray(selectedItem?.repairNeeded)
                     ? selectedItem.repairNeeded.join(", ")
                     : selectedItem.repairNeeded}
                 </p>
@@ -1041,12 +1041,12 @@ const RightSideBar = ({ selected }) => {
               </div>
               <div className="info-group">
                 <strong>Priority:</strong>
-                <p>{selectedItem.priority}</p>
+                <p>{selectedItem?.priority}</p>
               </div>
               {selectedItem.comments && (
                 <div className="info-group">
                   <strong>Comments:</strong>
-                  <p>{selectedItem.comments}</p>
+                  <p>{selectedItem?.comments}</p>
                 </div>
               )}
 
