@@ -25,12 +25,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    const success = await login(loginData.username, loginData.password);
-    console.log(success);
-    if (success) {
+    const result = await login(loginData.username, loginData.password);
+    if (result.success) {
       navigate("/");
     } else {
-      setError("Invalid username or password");
+      setError(result.message || "Invalid username or password");
     }
   };
 

@@ -30,6 +30,8 @@ import TimeCard from "../timecard/TimeCard";
 import ChangeUsersPassword  from "../ChangeUsersPassword/changeUsersPassword";
 import Overview from "../overview/Overview.jsx";
 
+import UserManagement from "../UserManagement/UserManagement";
+
 const getPriorityStyles = (priority) => {
   switch (priority) {
     case "High":
@@ -816,11 +818,17 @@ const RightSideBar = ({ selected }) => {
             <TimeCard />
           </div>
         )}
+        {selected === "UserManagement" && (
+          <div className="rightsidebar-bottom">
+            <UserManagement />
+          </div>
+        )}
         {selected === "ChangePassword" && (
           <div className="rightsidebar-bottom">
             <ChangeUsersPassword />
           </div>
         )}
+
       </div>
 
       {/* Add New Task Modal */}

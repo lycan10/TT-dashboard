@@ -9,7 +9,8 @@ import {
   Car02FreeIcons,
   CalendarAdd01FreeIcons,
   LogoutIcon,
-  DashboardSquare01Icon
+  DashboardSquare01Icon,
+  UserGroupIcon
 } from "@hugeicons/core-free-icons";
 import { useSidebar } from "../../context/SideBarContext";
 import { useAuth } from "../../context/AuthContext";
@@ -105,14 +106,23 @@ const LeftSideBar = ({ selected, onSelect, collapsed }) => {
           collapsed={collapsed}
         />
 
-        {user?.name === "admin" && (
+        {user?.role === "admin" && (
+          <>
           <LeftNavLinks
+            icon={UserGroupIcon}
+            title="User Management"
+            onClick={() => handleLinkClick("UserManagement")}
+            isSelected={selected === "UserManagement"}
+            collapsed={collapsed}
+          />
+          {/*<LeftNavLinks
             icon={CalendarAdd01FreeIcons}
             title="Change Password"
             onClick={() => handleLinkClick("ChangePassword")}
             isSelected={selected === "ChangePassword"}
             collapsed={collapsed}
-          />
+          />*/}
+          </>
         )}
 
         <LeftNavLinks

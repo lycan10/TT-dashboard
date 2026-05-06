@@ -27,24 +27,25 @@ export const AuthProvider = ({ children }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json",
           },
           body: JSON.stringify({ username, password }),
         }
       );
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Login failed");
+        throw new Error(data.message || "Login failed");
       }
 
-      const data = await response.json();
       setUser(data.user);
       setToken(data.token);
       localStorage.setItem("token", data.token);
-      return true;
+      return { success: true };
     } catch (error) {
       console.error("Login error:", error);
-      logout();
-      return false;
+      return { success: false, message: error.message };
     }
   };
 

@@ -9,6 +9,7 @@ import OrderPage from "./screens/order/Order";
 import Inventory from "./screens/Inventory/Inventory";
 import Hitch from "./screens/hitch/Hitch";
 import ChangeUsersPassword from "./screens/ChangeUsersPassword/changeUsersPassword";
+import UserManagement from "./screens/UserManagement/UserManagement";
 import { InventoryProvider } from "./context/InventoryContext";
 import { HitchProvider } from "./context/HitchContext";
 import { TimeCardProvider } from "./context/TimeCardContext";
@@ -52,6 +53,10 @@ function App() {
                     <Route
                       path="/change-password"
                       element={<ProtectedRoute element={ChangeUsersPassword} />}
+                    />
+                    <Route
+                      path="/user-management"
+                      element={<ProtectedRoute element={UserManagement} />}
                     />
                     <Route path="*" element={<Navigate to="/" replace />} />
                   </Routes>
