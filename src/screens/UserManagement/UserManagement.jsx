@@ -292,7 +292,7 @@ const UserManagement = () => {
               <>
                 <div className="form-group">
                   <label>Username</label>
-                  <input type="text" name="name" disabled readOnly className="input-field" value={formData.name} onChange={handleInputChange} required />
+                  <input type="text" name="name" className="input-field" value={formData.name} onChange={handleInputChange} required />
                 </div>
                 <div className="form-row">
                   <div className="form-group col">

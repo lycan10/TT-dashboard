@@ -573,6 +573,11 @@ const TimeCard = () => {
               : "--:--"}
           </h1>
         </div>
+        <div className="timesheet-timer">
+          <p>This Week Hours</p>
+          <h1>{currentActiveTimeCard?.weekly_working_hours || "--:--"}</h1>
+        </div>
+
       </div>
       <div className="custom-line no-margin"></div>
 
@@ -630,10 +635,12 @@ const TimeCard = () => {
                   <th>Clock In</th>
                   <th>Breaks</th>
                   <th>Working Hours</th>
+                  <th>Weekly Hours</th>
                   <th>Overtime</th> {/* New table header */}
                   <th>Clock Out</th>
                   <th>Status</th>
                   <th>Actions</th>
+
                 </tr>
               </thead>
               <tbody>
@@ -654,6 +661,7 @@ const TimeCard = () => {
                     </td>
                     <td>{timeCard.total_break_duration || "0h 0m"}</td>
                     <td>{timeCard.working_hours || "0h 0m"}</td>
+                    <td>{timeCard.weekly_working_hours || "0h 0m"}</td>
                     <td>{timeCard.overtime || "0h 0m"}</td>{" "}
                     {/* Display overtime */}
                     <td>
